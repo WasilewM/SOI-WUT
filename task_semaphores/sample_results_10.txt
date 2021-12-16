@@ -1,0 +1,46 @@
+Semaphores created
+P1: pushed to buffer_A
+P2: pushed to buffer_B
+K1: fetched 0 from buffer_A
+P2: pushed to buffer_C
+P1: pushed to buffer_B
+P1: pushed to buffer_A
+P2: pushed to buffer_B
+P2: pushed to buffer_C
+P1: pushed to buffer_B
+K2: fetched 1 from buffer_B
+K3: fetched 1 from buffer_C
+K1: fetched 0 from buffer_A
+P1: pushed to buffer_A
+P2: pushed to buffer_B
+K1: fetched 0 from buffer_A
+P2: pushed to buffer_C
+P1: pushed to buffer_B
+K3: fetched K2: fetched 0 from buffer_B
+1 from buffer_C
+P1: pushed to buffer_A
+P2: pushed to buffer_B
+K3: fetched 1 from buffer_C
+P2: pushed to buffer_C
+P1: pushed to buffer_B
+K1: fetched 0 from buffer_A
+K2: fetched 1 from buffer_B
+P1: pushed to buffer_A
+P2: pushed to buffer_B
+K2: fetched 0 from buffer_B
+K3: fetched 1 from buffer_C
+P1: pushed to buffer_B
+K1: fetched 0 from buffer_A
+P2: pushed to buffer_C
+P1: pushed to buffer_A
+P2: pushed to buffer_B
+P2: pushed to buffer_C
+K3: fetched 1 from buffer_C
+K1: fetched 0 from buffer_A
+P1: pushed to buffer_B
+K2: fetched 1 from buffer_B
+P2: pushed to buffer_B
+K3: fetched 1 from buffer_C
+P2: pushed to buffer_C
+Semaphores closed
+K3: fetched 1 from buffer_C
