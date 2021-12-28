@@ -1,18 +1,11 @@
 /**
- * @file main.cpp 
+ * @file main.cpp
  * @author Mateusz Wasilewski
  * @version 1.0
  * @date 2021-12-14
- * 
+ *
  * @copyright Copyright (c) 2021
- * 
-*/
-
-/*
-Compile program with the command presented below:
-g++ -o prog main.cpp -Wall -fsanitize=thread,undefined -fsanitize=thread,undefined -lpthread -lm
-Launch program with command:
-./prog
+ *
 */
 
 #include <iostream>
@@ -42,8 +35,8 @@ static sem_t mutex_C;       // mutex for buffer_C access
 int mutex_pshared = 1;      // for semaphores initialization
 int mutex_value = 1;        // initial value for "mutex_" semaphores
 
-static sem_t full_A;        // semaphore that provides that the size of the buffer_A won't be exceeded 
-static sem_t empty_A;       // semaphore that provides that items won't be consumed from buffer_A when it is empty  
+static sem_t full_A;        // semaphore that provides that the size of the buffer_A won't be exceeded
+static sem_t empty_A;       // semaphore that provides that items won't be consumed from buffer_A when it is empty
 static sem_t full_B;        // semaphore that provides that the size of the buffer_B won't be exceeded
 static sem_t empty_B;       // semaphore that provides that items won't be consumed from buffer_B when it is empty
 static sem_t full_C;        // semaphore that provides that the size of the buffer_C won't be exceeded
@@ -61,7 +54,7 @@ pthread_t cpth;
 
 
 // function handles producent p1 thread
-// producet p1 has 2 buffers to operate on alternately - buffer_A and buffer_B
+// producent p1 has 2 buffers to operate on alternately - buffer_A and buffer_B
 void* p1_thread(void* arg) {
     pthread_detach(pthread_self());
 
@@ -91,7 +84,7 @@ void* p1_thread(void* arg) {
 }
 
 // function handles producent p2 thread
-// producet p2 has 2 buffers to operate on alternately - buffer_B and buffer_C
+// producent p2 has 2 buffers to operate on alternately - buffer_B and buffer_C
 void* p2_thread(void* arg) {
     pthread_detach(pthread_self());
 
@@ -120,8 +113,8 @@ void* p2_thread(void* arg) {
     pthread_exit(NULL);
 }
 
-// function handles consumer p1 thread
-// producet k1 has 1 buffers to operate on - buffer_A
+// function handles consumer k1 thread
+// consumer k1 has 1 buffer to operate on - buffer_A
 void* k1_thread(void* arg) {
     pthread_detach(pthread_self());
 
@@ -131,7 +124,7 @@ void* k1_thread(void* arg) {
 
         int val = buffer_A.front();
         buffer_A.pop();
-        
+
         sem_post(&empty_A);
         sem_post(&mutex_A);
 
@@ -143,7 +136,7 @@ void* k1_thread(void* arg) {
 }
 
 // function handles consumer k2 thread
-// producet k2 has 1 buffers to operate on - buffer_B
+// consumer k2 has 1 buffer to operate on - buffer_B
 void* k2_thread(void* arg) {
     pthread_detach(pthread_self());
 
@@ -165,7 +158,7 @@ void* k2_thread(void* arg) {
 }
 
 // function handles consumer k3 thread
-// producet k3 has 1 buffers to operate on - buffer_C
+// consumer k3 has 1 buffer to operate on - buffer_C
 void* k3_thread(void* arg) {
     pthread_detach(pthread_self());
 
@@ -222,7 +215,7 @@ void close_semaphores() {
 
 // function closes the program
 void* close_program(void* arg) {
-    // get access to all buffers 
+    // get access to all buffers
     sem_wait(&mutex_A);
     sem_wait(&mutex_B);
     sem_wait(&mutex_C);
@@ -251,11 +244,11 @@ int main() {
     pthread_create(&k3, NULL, &k3_thread, NULL);
     pthread_join(k3, NULL);
 
-    // close the program after 
+    // close the program after
     sleep(WORK_TIME);
     pthread_create(&cpth, NULL, &close_program, NULL);
     pthread_join(cpth, NULL);
     pthread_exit(NULL);
-    
+
     return 0;
 }
