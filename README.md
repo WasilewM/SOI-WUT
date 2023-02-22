@@ -1,5 +1,5 @@
-# Operating-Systems-WUT  
-Projects done during Operating system course at FEIT at WUT.  
+# SOI-WUT  
+Projects done during SOI course (Operating System) at FEIT at WUT.  
   
 Task 1 - add procedure in Minix - add system procedure that will return given process id index from process  table of the system  
   
